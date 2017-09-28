@@ -28,7 +28,8 @@ class FiltersetMeta(type):
         return super(FiltersetMeta, cls).__new__(cls, name, bases, attrs)
 
 
-class BaseFilterset(metaclass=FiltersetMeta):
+class BaseFilterset():
+    __metaclass__ = FiltersetMeta
     def __init__(self, query=None):
         self.query = query if query else {}
 
