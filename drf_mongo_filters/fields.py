@@ -11,7 +11,7 @@ from rest_framework.exceptions import ValidationError
 class DateTime000Field(fields.DateTimeField):
     """ discards microseconds """
     def to_internal_value(self, value):
-        value = super().to_internal_value(value)
+        value = fields.DateTimeField.to_internal_value(self, value)
         return value.replace(microsecond=value.microsecond//1000*1000)
 
 
@@ -66,7 +66,7 @@ class DictField(fields.DictField):
         if self.required_keys is not None:
             self.required_keys = set(self.required_keys)
 
-        super().__init__(**kwargs)
+        fields.DictField.__init__(self, **kwargs)
 
     def get_value(self, data):
         if isinstance(data, MultiValueDict):
@@ -116,8 +116,8 @@ class GeoPointField(DictField):
 
     def __init__(self, **kwargs):
         kwargs['child'] = fields.FloatField()
-        super().__init__(**kwargs)
+        DictField.__init__(self, **kwargs)
 
     def to_internal_value(self, data):
-        value = super().to_internal_value(data)
+        value = DictField.to_internal_value(self, data)
         return { 'type': 'Point', 'coordinates': [ value['lng'], value['lat'] ] }

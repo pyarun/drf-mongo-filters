@@ -156,7 +156,7 @@ class RangeFilter(Filter):
     def __init__(self, lookup=None, name=None, **kwargs):
         if lookup:
             self.lookup_types = lookup
-        super().__init__(name=name, **kwargs)
+        Filter.__init__(self, name=name, **kwargs)
 
     def filter_params(self, value):
         """ return filtering params """
@@ -189,7 +189,7 @@ class IntersectRangeFilter(Filter):
 
     def __init__(self, sources, name=None, **kwargs):
         self.sources=sources
-        super().__init__(name=name, **kwargs)
+        Filter.__init__(self, name=name, **kwargs)
 
     @property
     def target(self):
