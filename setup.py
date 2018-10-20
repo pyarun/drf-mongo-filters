@@ -5,9 +5,9 @@ setup(
     name="drf-mongo-filters",
     packages=["drf_mongo_filters",],
     version="1.1",
-    install_requires=["Django >= 1.11",
-                      "mongoengine >= 0.13",
-                      "djangorestframework >= 3.5.3"],
+    install_requires=["Django >= 2.0",
+                      "mongoengine >= 0.15.3",
+                      "djangorestframework >= 3.8.2"],
     # metadata for upload to PyPI
     author="Maxim Vasiliev",
     author_email="qwiglydee@gmail.com",
